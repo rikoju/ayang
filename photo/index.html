@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<title>Selamat Ulang Tahun Sayangku! 💕</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&family=Quicksand:wght@400;700&display=swap');
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100vh;font-family:'Quicksand',sans-serif;background:#ffeef8;overflow-x:hidden}
+  body{cursor:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text y="24" font-size="24">💖</text></svg>'),auto}
+
+  /* --- BIG background photos --- */
+  .photo-bg{
+    position:fixed;top:0;left:0;width:100vw;height:100vh;overflow:hidden;z-index:1
+  }
+  .photo-bg img{
+    position:absolute;
+    width:110vw;height:110vh;object-fit:cover;
+    border-radius:20px;
+    opacity:0;transform:scale(1.3) rotate(var(--r,0deg));
+    transition:opacity .8s ease,transform .8s ease
+  }
+  .photo-bg img.active{opacity:.75;transform:scale(1) rotate(0deg)}
+
+  /* --- foreground --- */
+  .content-wrapper{position:relative;z-index:10}
+  .content-box{
+    margin:100vh auto 60px;
+    max-width:800px;
+    padding:60px 30px;
+    background:rgba(255,255,255,.85);
+    border-radius:30px;
+    box-shadow:0 10px 30px rgba(255,77,148,.3);
+    backdrop-filter:blur(10px)
+  }
+  .title{font-family:'Pacifico',cursive;font-size:3.5rem;background:linear-gradient(45deg,#ff4d94,#ff8ac7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px;animation:bounce 2s ease-in-out infinite}
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .subtitle{font-family:'Dancing Script',cursive;font-size:1.8rem;color:#d63384;margin-bottom:25px}
+  .birthday-message,.footer{font-size:1.2rem;color:#8b0051;line-height:1.7}
+  .love-meter{width:300px;height:30px;background:#f0f0f0;border-radius:15px;margin:20px auto;overflow:hidden}
+  .love-fill{height:100%;background:linear-gradient(90deg,#ff4d94,#ff8ac7);width:0;transition:width 2s ease}
+  .love-percentage{font-size:2rem;font-weight:700;color:#ff4d94;margin:10px 0}
+  .surprise-button{background:linear-gradient(135deg,#ff4d94,#ff8ac7);color:#fff;border:none;padding:20px 50px;font-size:1.3rem;font-weight:700;border-radius:50px;cursor:pointer;transition:.3s;animation:buttonGlow 2s infinite}
+  @keyframes buttonGlow{0%{box-shadow:0 5px 15px rgba(255,77,148,.4)}50%{box-shadow:0 5px 25px rgba(255,77,148,.8)}100%{box-shadow:0 5px 15px rgba(255,77,148,.4)}}
+  .surprise-button:hover{transform:scale(1.1);animation:none}
+  .surprise-content{max-height:0;overflow:hidden;transition:max-height .5s ease}
+  .surprise-content.active{max-height:1000px;margin-top:20px}
+
+  /* hearts & confetti */
+  .floating-hearts{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100}
+  .heart{position:absolute;color:#ff4d94;font-size:20px;animation:float 15s linear infinite;opacity:.7}
+  @keyframes float{0%{transform:translateY(100vh) rotate(0deg);opacity:0}10%{opacity:.7}90%{opacity:.7}100%{transform:translateY(-100vh) rotate(360deg);opacity:0}}
+  .confetti{position:fixed;width:8px;height:8px;background:#ff4d94;border-radius:50%;animation:confettiFall 3s linear forwards;pointer-events:none;z-index:200}
+  @keyframes confettiFall{to{transform:translateY(100vh) rotate(720deg);opacity:0}}
+</style>
+</head>
+<body>
+
+<!-- LIST OF YOUR 19 PHOTOS -->
+<script>
+const myPhotos = [
+ 
+  'IMG_20241223_125800_470.jpg',
+  'IMG-20230924-WA0010.jpg',
+   'IMG-20230923-WA0004.jpg',
+  'IMG-20240306-WA0002.jpg',
+  'IMG-20240603-WA0002.jpg',
+  'IMG-20240608-WA0008.jpg',
+  'IMG-20240725-WA0002.jpg',
+  'IMG-20240823-WA0010.jpg',
+  'IMG-20241008-WA0005.jpg',
+  'IMG-20241008-WA0007.jpg',
+  'IMG-20241216-WA0003.jpg',
+  'IMG-20250312-WA0005.jpg',
+  'IMG-20240404-WA000.jpg',
+   'IMG-20230412-WA0007.jpg',
+  'IMG-20250312-WA0008.jpg',
+   'IMG-20240424-WA0009.jpg',
+  'IMG-20240602-WA0009.jpg',
+   'Gambar WhatsApp 2025-03-12 pukul 22.29.32_495f6eda.jpg',
+  'IMG-20250409-WA0000.jpg'
+];
+</script>
+
+<!-- background photos -->
+<div class="photo-bg" id="photoBg"></div>
+
+<!-- foreground content -->
+<div style="position:relative;z-index:10">
+  <div class="content-box" style="margin-top:100vh">
+    <h1 class="title">Selamat Ulang Tahun Sayangku! 🎂💖</h1>
+    <p class="subtitle">Hari spesial untuk orang paling spesial di hidupku</p>
+    <div class="birthday-message">
+      <p>Hari ini adalah hari paling manis sepanjang tahun! Scroll ke bawah untuk melihat setiap foto kita…</p>
+      <p>Tiap detik bersamamu adalah hadiah terindah yang Tuhan berikan padaku. Kamu adalah alasan aku tersenyum setiap hari, meskipun kadang aku bandel dan bikin kamu marah hehe 😅</p>
+    </div>
+  </div>
+
+  <div class="content-box">
+    <h2 style="font-family:'Dancing Script',cursive;color:#d63384">Cinta Kita Abadi 💕</h2>
+    <div class="love-meter"><div class="love-fill" id="loveFill"></div></div>
+    <div class="love-percentage" id="lovePercentage">0%</div>
+  </div>
+
+  <div class="content-box">
+    <button class="surprise-button" onclick="showSurprise()">Klik untuk Kejutan! 🎁</button>
+    <div class="surprise-content" id="surpriseContent">
+      <h3 style="font-family:'Dancing Script',cursive;color:#d63384;font-size:2rem">Selamat Ulang Tahun! 🎉</h3>
+      <svg width="200" height="200" viewBox="0 0 200 200" style="display:block;margin:20px auto">
+        <rect x="30" y="140" width="140" height="40" fill="#ff9999" rx="5"/>
+        <rect x="40" y="120" width="120" height="20" fill="#ffcccc" rx="3"/>
+        <rect x="50" y="100" width="100" height="20" fill="#ffb3d9" rx="3"/>
+        <circle cx="100" cy="100" r="50" fill="#ffcccc"/>
+        <rect x="90" y="70" width="5" height="30" fill="#ffff00"/>
+        <rect x="105" y="70" width="5" height="30" fill="#ffff00"/>
+        <circle cx="92.5" cy="67" r="3" fill="#ff0000"/>
+        <circle cx="107.5" cy="67" r="3" fill="#ff0000"/>
+      </svg>
+      <p style="font-size:1.3rem;color:#8b0051">Aku bikin kue virtual buat kamu! Maaf ya cuma sebatas ini dulu, nanti aku beneran bikin kok (kalau nggak gosong 😅)</p>
+      <p style="font-size:1.1rem;color:#d63384">Semoga hari ini seindah senyummu, semanis canda tawa kita, dan sepenuh cintaku padamu! 💕</p>
+    </div>
+  </div>
+
+  <div class="content-box footer">
+    <p>Dibuat dengan sepenuh cinta (dan sedikit bumbu kegoblokan) oleh seseorang yang sayang banget sama kamu! 💝</p>
+  </div>
+</div>
+
+<script>
+/* background photos */
+(function(){
+  const bg=document.getElementById('photoBg');
+  myPhotos.forEach((src,i)=>{
+    const img=document.createElement('img');
+    img.src=src;
+    img.style.setProperty('--r',(Math.random()*30-15)+'deg');
+    img.alt='Foto '+(i+1);
+    bg.appendChild(img);
+  });
+  const imgs=bg.children;
+  let idx=0;
+  imgs[idx].classList.add('active');
+
+  /* switch photo on scroll */
+  window.addEventListener('scroll',()=>{
+    const scrollTop=window.pageYOffset;
+    const windowH=window.innerHeight;
+    const newIdx=Math.min(Math.floor(scrollTop/windowH),imgs.length-1);
+    if(newIdx!==idx){
+      imgs[idx].classList.remove('active');
+      idx=newIdx;
+      imgs[idx].classList.add('active');
+    }
+  });
+})();
+
+/* effects */
+(function(){
+  // floating hearts
+  const fh=document.createElement('div');fh.className='floating-hearts';document.body.appendChild(fh);
+  const hearts=['💖','💕','💗','💝','💘'];
+  for(let i=0;i<25;i++){
+    const h=document.createElement('div');h.className='heart';
+    h.innerHTML=hearts[Math.floor(Math.random()*hearts.length)];
+    h.style.left=Math.random()*100+'vw';
+    h.style.animationDelay=Math.random()*15+'s';
+    h.style.animationDuration=(15+Math.random()*10)+'s';
+    h.style.opacity=Math.random()*.7+.3;
+    fh.appendChild(h);
+  }
+
+  // love-meter
+  const loveFill=document.getElementById('loveFill');
+  const lovePercentage=document.getElementById('lovePercentage');
+  let w=0;
+  const m=setInterval(()=>{
+    if(w>=100){clearInterval(m);}
+    else{w++;loveFill.style.width=w+'%';lovePercentage.textContent=w+'%';}
+  },30);
+
+  // confetti burst
+  function burst(){
+    const colors=['#ff4d94','#ff8ac7','#ffcce6','#fff','#ffff00','#ff6bb3'];
+    for(let i=0;i<60;i++){
+      const c=document.createElement('div');
+      c.className='confetti';
+      c.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];
+      c.style.left=Math.random()*100+'vw';
+      c.style.top='-10px';
+      c.style.width=c.style.height=(Math.random()*10+5)+'px';
+      c.style.animationDuration=(Math.random()*3+2)+'s';
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(),3000);
+    }
+  }
+  window.showSurprise=()=>{
+    document.getElementById('surpriseContent').classList.toggle('active');
+    burst();setTimeout(burst,500);setTimeout(burst,1000);
+  };
+  setInterval(()=>{if(Math.random()<.3)burst();},6000);
+})();
+</script>
+</body>
+</html>
